@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Query Search</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .search-box {
+            margin-top: 20%;
+        }
+        input[type="text"] {
+            padding: 15px;
+            width: 80%;
+            border: none;
+            border-radius: 25px;
+            background-color: #333;
+            color: white;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .results {
+            margin-top: 40px;
+            text-align: left;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .results h3, .results p, .results ul {
+            color: #ccc;
+        }
+        .sql-query {
+            font-style: italic;
+            color: #aaa;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="search-box">
+            <form method="POST">
+                <input type="text" name="query" placeholder="Ask your question here...">
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        
+        {% if query %}
+        <div class="results">
+            <h3>Results for: "{{ query }}"</h3>
+            <p class="sql-query">Generated SQL: {{ sql_query }}</p>
+            <h4>Query Results:</h4>
+            <ul>
+                {% for result in results %}
+                    <li>{{ result }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
